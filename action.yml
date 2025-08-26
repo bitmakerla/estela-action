@@ -1,0 +1,58 @@
+name: 'Estela Deploy Action'
+description: 'Deploy and manage Scrapy projects on Estela platform'
+author: 'Algova'
+
+branding:
+  icon: 'upload-cloud'
+  color: 'blue'
+
+inputs:
+  username:
+    description: 'Estela username for authentication'
+    required: true
+  password:
+    description: 'Estela password for authentication'
+    required: true
+  project:
+    description: 'Estela project ID'
+    required: false
+  host:
+    description: 'Estela API host URL'
+    required: false
+    default: 'https://api.estela.io'
+  command:
+    description: 'Estela CLI command to execute'
+    required: false
+    default: 'deploy'
+  environment:
+    description: 'Environment variables for the project (JSON format)'
+    required: false
+  requirements-file:
+    description: 'Path to requirements.txt file'
+    required: false
+    default: 'requirements.txt'
+  scrapy-cfg:
+    description: 'Path to scrapy.cfg file'
+    required: false
+    default: 'scrapy.cfg'
+
+outputs:
+  deployment-id:
+    description: 'The ID of the deployment'
+  deployment-url:
+    description: 'URL to view the deployment in Estela'
+  status:
+    description: 'Status of the deployment'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.username }}
+    - ${{ inputs.password }}
+    - ${{ inputs.project }}
+    - ${{ inputs.host }}
+    - ${{ inputs.command }}
+    - ${{ inputs.environment }}
+    - ${{ inputs.requirements-file }}
+    - ${{ inputs.scrapy-cfg }}
