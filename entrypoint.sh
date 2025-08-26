@@ -27,6 +27,13 @@ if [ -z "$USERNAME" ] || [ -z "$PASSWORD" ] || [ -z "$PROJECT_ID" ]; then
     exit 1
 fi
 
+echo "DEBUG: Valores capturados:"
+echo "- USERNAME: ${USERNAME:+[configurado]}"
+echo "- PASSWORD: ${PASSWORD:+[configurado]}"
+echo "- PROJECT_ID: $PROJECT_ID"
+echo "- HOST: $HOST"
+echo "---"
+
 # Verificar que estamos en un proyecto Scrapy
 if [ ! -f "scrapy.cfg" ]; then
     log_error "No se encontró scrapy.cfg. ¿Estás en un proyecto Scrapy?"
