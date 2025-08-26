@@ -1,6 +1,6 @@
-name: 'Estela Deploy Action'
-description: 'Deploy and manage Scrapy projects on Estela platform'
-author: 'Algova'
+name: 'Bitmaker Cloud Deploy'
+description: 'Deploy Scrapy projects to Bitmaker Cloud (Estela)'
+author: 'Kate'
 
 branding:
   icon: 'upload-cloud'
@@ -8,51 +8,23 @@ branding:
 
 inputs:
   username:
-    description: 'Estela username for authentication'
+    description: 'Bitmaker Cloud username'
     required: true
   password:
-    description: 'Estela password for authentication'
+    description: 'Bitmaker Cloud password'
     required: true
-  project:
-    description: 'Estela project ID'
-    required: false
+  project-id:
+    description: 'Project ID from Bitmaker Cloud'
+    required: true
   host:
-    description: 'Estela API host URL'
+    description: 'Bitmaker Cloud API host'
     required: false
-    default: 'https://api.estela.io'
-  command:
-    description: 'Estela CLI command to execute'
-    required: false
-    default: 'deploy'
-  environment:
-    description: 'Environment variables for the project (JSON format)'
-    required: false
-  requirements-file:
-    description: 'Path to requirements.txt file'
-    required: false
-    default: 'requirements.txt'
-  scrapy-cfg:
-    description: 'Path to scrapy.cfg file'
-    required: false
-    default: 'scrapy.cfg'
+    default: 'https://api.cloud.bitmaker.dev'
 
 outputs:
-  deployment-id:
-    description: 'The ID of the deployment'
-  deployment-url:
-    description: 'URL to view the deployment in Estela'
   status:
-    description: 'Status of the deployment'
+    description: 'Deployment status'
 
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  args:
-    - ${{ inputs.username }}
-    - ${{ inputs.password }}
-    - ${{ inputs.project }}
-    - ${{ inputs.host }}
-    - ${{ inputs.command }}
-    - ${{ inputs.environment }}
-    - ${{ inputs.requirements-file }}
-    - ${{ inputs.scrapy-cfg }}
