@@ -1,22 +1,11 @@
 FROM python:3.9-slim
 
-# Install system dependencies
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-    git \
-    curl \
-    jq \
-    && rm -rf /var/lib/apt/lists/*
+# Instalar estela CLI
+RUN pip install --no-cache-dir estela
 
-# Install Estela CLI
-RUN pip install --no-cache-dir estela-cli scrapy
-
-# Copy entrypoint script
+# Copiar el script principal
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
-# Add helper scripts
-COPY scripts/ /scripts/
-RUN chmod +x /scripts/*.sh
-
+# Ejecutar el script
 ENTRYPOINT ["/entrypoint.sh"]
