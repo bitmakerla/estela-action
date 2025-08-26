@@ -18,7 +18,7 @@ log_error() {
 # Obtener los inputs (GitHub Actions los pasa como INPUT_NOMBREENVARIABLE en mayúsculas)
 USERNAME="${INPUT_USERNAME}"
 PASSWORD="${INPUT_PASSWORD}"
-PROJECT_ID="${INPUT_PROJECT-ID}"  # Nota: GitHub convierte project-id a PROJECT_ID
+PROJECT_ID="${INPUT_PROJECT_ID}"  # Nota: GitHub convierte project-id a PROJECT_ID
 HOST="${INPUT_HOST:-https://api.cloud.bitmaker.dev}"
 
 # Verificar que tenemos los datos necesarios
