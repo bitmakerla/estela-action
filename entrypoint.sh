@@ -1,12 +1,10 @@
 #!/bin/bash
 set -e
 
-# Colores para los mensajes
 GREEN='\033[0;32m'
 RED='\033[0;31m'
-NC='\033[0m' # Sin color
+NC='\033[0m'
 
-# Función para mensajes
 log_success() {
     echo -e "${GREEN}✓${NC} $1"
 }
@@ -15,13 +13,11 @@ log_error() {
     echo -e "${RED}✗${NC} $1"
 }
 
-# Obtener los inputs (GitHub Actions los pasa como INPUT_NOMBREENVARIABLE en mayúsculas)
 USERNAME="${INPUT_USERNAME}"
 PASSWORD="${INPUT_PASSWORD}"
-PROJECT_ID="${INPUT_PROJECT}"  # Nota: GitHub convierte project-id a PROJECT_ID
+PROJECT_ID="${INPUT_PROJECT}"
 HOST="${INPUT_HOST:-https://api.cloud.bitmaker.dev}"
 
-# Verificar que tenemos los datos necesarios
 if [ -z "$USERNAME" ] || [ -z "$PASSWORD" ] || [ -z "$PROJECT_ID" ]; then
     log_error "Faltan credenciales. Necesitas username, password y project-id"
     exit 1
