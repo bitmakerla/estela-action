@@ -1,11 +1,8 @@
 FROM python:3.9-slim
 
-# Instalar estela CLI
 RUN pip install --no-cache-dir estela
 
-# Copiar el script principal
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
-# Ejecutar el script
 ENTRYPOINT ["/entrypoint.sh"]
