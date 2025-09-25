@@ -28,6 +28,3 @@ outputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  env:
-    BMC_DEFAULT_USERNAME: ${{ secrets.BMC_USERNAME }}
-    BMC_DEFAULT_PASSWORD: ${{ secrets.BMC_PASSWORD }}
