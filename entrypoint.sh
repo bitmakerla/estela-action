@@ -13,23 +13,8 @@ log_error() {
     echo -e "${RED}✗${NC} $1"
 }
 
-get_credential() {
-    local input_var="$1"
-    local default_var="$2"
-    local credential_name="$3"
-    
-    if [ -n "$input_var" ]; then
-        echo "$input_var"
-    elif [ -n "$default_var" ]; then
-        log_warning "Usando $credential_name por defecto del action"
-        echo "$default_var"
-    else
-        echo ""
-    fi
-}
-
-USERNAME=$(get_credential "$INPUT_USERNAME" "$BMC_DEFAULT_USERNAME" "USERNAME")
-PASSWORD=$(get_credential "$INPUT_PASSWORD" "$BMC_DEFAULT_PASSWORD" "PASSWORD")
+USERNAME="${INPUT_USERNAME}"
+PASSWORD="${INPUT_PASSWORD}"
 PROJECT_ID="${INPUT_PROJECT}"
 HOST="${INPUT_HOST:-https://api.cloud.bitmaker.dev}"
 
